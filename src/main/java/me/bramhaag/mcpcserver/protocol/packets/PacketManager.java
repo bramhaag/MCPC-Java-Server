@@ -12,11 +12,12 @@ public class PacketManager {
 
     private PacketManager() {
         packets = new Reflections("me.bramhaag.mcpcserver.protocol.packets").getSubTypesOf(AbstractPacket.class).stream()
-                .filter(c -> c.isAnnotationPresent(me.bramhaag.mcpcserver.annotations.packets.Packet.class))
-                .collect(Collectors.toMap(c -> c, c -> c.getAnnotation(me.bramhaag.mcpcserver.annotations.packets.Packet.class)));
+                .filter(c -> c.isAnnotationPresent(Packet.class))
+                .filter(c -> c.getAnnotation(Packet.class).type() == Packet.Type.IN)
+                .collect(Collectors.toMap(c -> c, c -> c.getAnnotation(Packet.class)));
     }
 
-    public Class<? extends AbstractPacket> getPacket(int id, PacketState state) {
+    public Class<? extends AbstractPacket> getPacket(int id, Packet.State state) {
         return packets.entrySet().stream()
                 .filter(e -> e.getValue().id() == id && e.getValue().state() == state)
                 .map(Map.Entry::getKey)

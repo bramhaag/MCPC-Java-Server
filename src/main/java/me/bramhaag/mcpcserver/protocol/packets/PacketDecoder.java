@@ -43,7 +43,7 @@ public class PacketDecoder extends ByteToMessageDecoder {
                 .forEach(f -> setField(f, packet, in));
 
         packet.setAddress(address);
-        packet.onReceive();
+        packet.process();
     }
 
     @Override

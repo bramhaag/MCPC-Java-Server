@@ -17,5 +17,5 @@ public abstract class AbstractPacket {
         return address;
     }
 
-    public abstract void onReceive();
+    public abstract void process();
 }

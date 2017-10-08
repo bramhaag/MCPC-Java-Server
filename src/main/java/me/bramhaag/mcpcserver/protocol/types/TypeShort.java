@@ -11,6 +11,6 @@ public class TypeShort implements IType<Short> {
 
     @Override
     public void write(@NotNull ByteBuf buf, @NotNull Short value) {
-        //TODO
+        buf.writeShort(value);
     }
 }

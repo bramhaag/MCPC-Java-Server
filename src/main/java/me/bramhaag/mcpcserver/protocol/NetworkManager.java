@@ -1,6 +1,6 @@
 package me.bramhaag.mcpcserver.protocol;
 
-import me.bramhaag.mcpcserver.protocol.packets.PacketState;
+import me.bramhaag.mcpcserver.annotations.packets.Packet;
 
 import java.net.InetSocketAddress;
 import java.util.HashMap;
@@ -8,17 +8,17 @@ import java.util.Map;
 
 public class NetworkManager {
 
-    private Map<InetSocketAddress, PacketState> states = new HashMap<>();
+    private Map<InetSocketAddress, Packet.State> states = new HashMap<>();
 
     private NetworkManager() {}
 
-    public void setState(InetSocketAddress address, PacketState state) {
+    public void setState(InetSocketAddress address, Packet.State state) {
         this.states.put(address, state);
     }
 
-    public PacketState getState(InetSocketAddress address) {
+    public Packet.State getState(InetSocketAddress address) {
         if(!states.containsKey(address)) {
-            states.put(address, PacketState.HANDSHAKING);
+            states.put(address, Packet.State.HANDSHAKING);
         }
 
         return states.get(address);

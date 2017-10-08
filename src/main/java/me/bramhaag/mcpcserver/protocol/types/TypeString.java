@@ -4,6 +4,8 @@ import io.netty.buffer.ByteBuf;
 import io.netty.util.CharsetUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.nio.charset.StandardCharsets;
+
 public class TypeString implements IType<String> {
 
     @Override
@@ -15,6 +17,9 @@ public class TypeString implements IType<String> {
 
     @Override
     public void write(@NotNull ByteBuf buf, @NotNull String value) {
-        //TODO
+        byte[] bytes = value.getBytes(StandardCharsets.UTF_8);
+
+        Type.VAR_INT.write(buf, bytes.length);
+        buf.writeBytes(bytes);
     }
 }
