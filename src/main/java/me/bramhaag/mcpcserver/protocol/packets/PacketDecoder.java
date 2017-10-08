@@ -16,6 +16,7 @@ import java.util.List;
 
 public class PacketDecoder extends ByteToMessageDecoder {
 
+    private static final TypeResolver resolver = new TypeResolver();
     private InetSocketAddress address;
 
     public PacketDecoder(InetSocketAddress address) {
@@ -52,7 +53,7 @@ public class PacketDecoder extends ByteToMessageDecoder {
 
     private void setField(Field field, Object object, ByteBuf buf) {
         try {
-            field.set(object, TypeResolver.getInstance().resolve(field.getType(), buf));
+            field.set(object, resolver.resolve(field.getType(), buf));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

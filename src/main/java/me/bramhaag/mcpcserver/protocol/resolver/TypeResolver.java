@@ -11,7 +11,7 @@ public class TypeResolver {
 
     private Map<Class<?>, ITypeResolver<?>> resolvers = new HashMap<>();
 
-    private TypeResolver() {
+    public TypeResolver() {
         resolvers.put(int.class, (ITypeResolver<Integer>) buf -> (Integer)Type.VAR_INT.read(buf));
         resolvers.put(long.class, (ITypeResolver<Long>) buf -> (Long) Type.VAR_LONG.read(buf));
         resolvers.put(short.class, (ITypeResolver<Short>) buf -> (Short) Type.SHORT.read(buf));
@@ -21,13 +21,5 @@ public class TypeResolver {
 
     public <T> T resolve(Class<T> type, ByteBuf buf) {
         return (T)resolvers.get(type).resolve(buf);
-    }
-
-    private static class LazyHolder {
-        private static final TypeResolver INSTANCE = new TypeResolver();
-    }
-
-    public static TypeResolver getInstance() {
-        return TypeResolver.LazyHolder.INSTANCE;
     }
 }
