@@ -1,5 +1,6 @@
 package me.bramhaag.mcpcserver.protocol.packets;
 
+import me.bramhaag.mcpcserver.annotations.packets.Packet;
 import org.reflections.Reflections;
 
 import java.util.Map;
@@ -7,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class PacketManager {
 
-    private Map<Class<? extends AbstractPacket>, me.bramhaag.mcpcserver.annotations.packets.Packet> packets;
+    private Map<Class<? extends AbstractPacket>, Packet> packets;
 
     private PacketManager() {
         packets = new Reflections("me.bramhaag.mcpcserver.protocol.packets").getSubTypesOf(AbstractPacket.class).stream()

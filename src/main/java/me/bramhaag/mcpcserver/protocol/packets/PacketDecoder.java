@@ -10,7 +10,6 @@ import me.bramhaag.mcpcserver.protocol.types.Type;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.Arrays;
 import java.util.List;
@@ -28,10 +27,13 @@ public class PacketDecoder extends ByteToMessageDecoder {
         int length = (Integer) Type.VAR_INT.read(in);
         int id = (Integer)Type.VAR_INT.read(in);
 
+        System.out.println("== Received Packet ==");
         System.out.println("Length: " + length);
         System.out.println("ID: " + id);
 
         Class<? extends AbstractPacket> packetType = PacketManager.getInstance().getPacket(id, NetworkManager.getInstance().getState(address));
+        if(packetType == null) return;
+
         AbstractPacket packet = packetType.getConstructor().newInstance();
 
         Arrays.stream(packetType.getDeclaredFields())
