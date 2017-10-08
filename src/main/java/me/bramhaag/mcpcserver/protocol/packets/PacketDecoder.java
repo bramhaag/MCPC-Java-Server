@@ -25,8 +25,8 @@ public class PacketDecoder extends ByteToMessageDecoder {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-        int length = (Integer) Type.VAR_INT.read(in);
-        int id = (Integer)Type.VAR_INT.read(in);
+        int length = Type.VAR_INT.read(in);
+        int id = Type.VAR_INT.read(in);
 
         System.out.println("== Received Packet ==");
         System.out.println("Length: " + length);

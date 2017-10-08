@@ -12,11 +12,11 @@ public class TypeResolver {
     private Map<Class<?>, ITypeResolver<?>> resolvers = new HashMap<>();
 
     public TypeResolver() {
-        resolvers.put(int.class, (ITypeResolver<Integer>) buf -> (Integer)Type.VAR_INT.read(buf));
-        resolvers.put(long.class, (ITypeResolver<Long>) buf -> (Long) Type.VAR_LONG.read(buf));
-        resolvers.put(short.class, (ITypeResolver<Short>) buf -> (Short) Type.SHORT.read(buf));
-        resolvers.put(String.class, (ITypeResolver<String>) buf -> (String) Type.STRING.read(buf));
-        resolvers.put(PacketState.class, (ITypeResolver<PacketState>) buf -> (PacketState) PacketState.getById((Integer)Type.VAR_INT.read(buf)));
+        resolvers.put(int.class, (ITypeResolver<Integer>) Type.VAR_INT::read);
+        resolvers.put(long.class, (ITypeResolver<Long>) Type.VAR_LONG::read);
+        resolvers.put(short.class, (ITypeResolver<Short>) Type.SHORT::read);
+        resolvers.put(String.class, (ITypeResolver<String>) Type.STRING::read);
+        resolvers.put(PacketState.class, (ITypeResolver<PacketState>) buf -> PacketState.getById(Type.VAR_INT.read(buf)));
     }
 
     public <T> T resolve(Class<T> type, ByteBuf buf) {

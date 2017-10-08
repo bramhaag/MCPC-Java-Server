@@ -2,7 +2,6 @@ package me.bramhaag.mcpcserver.protocol;
 
 import me.bramhaag.mcpcserver.protocol.packets.PacketState;
 
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
