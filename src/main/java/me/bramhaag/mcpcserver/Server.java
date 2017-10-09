@@ -8,7 +8,10 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import me.bramhaag.mcpcserver.protocol.packets.AbstractPacket;
 import me.bramhaag.mcpcserver.protocol.packets.PacketDecoder;
+import me.bramhaag.mcpcserver.protocol.packets.PacketEncoder;
+import me.bramhaag.mcpcserver.protocol.packets.out.login.PacketEncryptionRequest;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -30,8 +33,6 @@ public class Server {
     public Server(int port) {
         this.port = port;
         logger.info("Created");
-
-        KEYPAIR.getPublic().getEncoded();
     }
 
     public void run() throws InterruptedException {

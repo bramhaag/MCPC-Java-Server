@@ -1,7 +1,9 @@
-package me.bramhaag.mcpcserver.protocol.types;
+package me.bramhaag.mcpcserver.protocol.type.types;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.util.CharsetUtil;
+import me.bramhaag.mcpcserver.protocol.type.IType;
+import me.bramhaag.mcpcserver.protocol.type.Type;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.StandardCharsets;

@@ -1,4 +1,4 @@
-package me.bramhaag.mcpcserver.protocol.types;
+package me.bramhaag.mcpcserver.protocol.type;
 
 import io.netty.buffer.ByteBuf;
 

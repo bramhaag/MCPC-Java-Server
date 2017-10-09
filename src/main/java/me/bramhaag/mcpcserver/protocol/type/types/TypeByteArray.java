@@ -1,6 +1,8 @@
-package me.bramhaag.mcpcserver.protocol.types;
+package me.bramhaag.mcpcserver.protocol.type.types;
 
 import io.netty.buffer.ByteBuf;
+import me.bramhaag.mcpcserver.protocol.type.IType;
+import me.bramhaag.mcpcserver.protocol.type.Type;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;

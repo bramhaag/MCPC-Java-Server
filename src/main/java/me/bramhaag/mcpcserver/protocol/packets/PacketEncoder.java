@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 import me.bramhaag.mcpcserver.annotations.packets.IgnoreVariable;
-import me.bramhaag.mcpcserver.protocol.types.Type;
+import me.bramhaag.mcpcserver.protocol.type.Type;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class PacketEncoder extends MessageToByteEncoder<AbstractPacket> {
 
     @Override
-    protected void encode(ChannelHandlerContext ctx, AbstractPacket packet, ByteBuf out) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, AbstractPacket packet, ByteBuf out) {
         Arrays.stream(packet.getClass().getDeclaredFields())
                 .filter(f -> !f.isAnnotationPresent(IgnoreVariable.class))
                 .peek(f -> f.setAccessible(true))

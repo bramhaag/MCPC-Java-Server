@@ -5,7 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import me.bramhaag.mcpcserver.annotations.packets.IgnoreVariable;
 import me.bramhaag.mcpcserver.protocol.NetworkManager;
-import me.bramhaag.mcpcserver.protocol.types.Type;
+import me.bramhaag.mcpcserver.protocol.type.Type;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

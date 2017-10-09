@@ -1,14 +1,14 @@
-package me.bramhaag.mcpcserver.protocol.types;
+package me.bramhaag.mcpcserver.protocol.type.types;
 
 import io.netty.buffer.ByteBuf;
+import me.bramhaag.mcpcserver.protocol.type.IType;
 import org.jetbrains.annotations.NotNull;
 
-public class TypeVarInt implements IType<Integer> {
-
+public class TypeVarLong implements IType<Long> {
     @Override
-    public Integer read(@NotNull ByteBuf buf) {
+    public Long read(@NotNull ByteBuf buf) {
         int numRead = 0;
-        int result = 0;
+        long result = 0;
         byte read;
 
         do {
@@ -17,8 +17,8 @@ public class TypeVarInt implements IType<Integer> {
             result |= (value << (7 * numRead));
 
             numRead++;
-            if (numRead > 5) {
-                throw new RuntimeException("VarInt is too big");
+            if (numRead > 10) {
+                throw new RuntimeException("VarLong is too big");
             }
         } while ((read & 0b10000000) != 0);
 
@@ -26,7 +26,7 @@ public class TypeVarInt implements IType<Integer> {
     }
 
     @Override
-    public void write(@NotNull ByteBuf buf, @NotNull Integer value) {
+    public void write(@NotNull ByteBuf buf, @NotNull Long value) {
         do {
             byte temp = (byte)(value & 0b01111111);
             value >>>= 7;

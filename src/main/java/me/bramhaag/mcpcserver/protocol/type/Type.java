@@ -1,7 +1,12 @@
-package me.bramhaag.mcpcserver.protocol.types;
+package me.bramhaag.mcpcserver.protocol.type;
 
 import io.netty.buffer.ByteBuf;
 import me.bramhaag.mcpcserver.annotations.packets.Packet;
+import me.bramhaag.mcpcserver.protocol.type.types.TypeByteArray;
+import me.bramhaag.mcpcserver.protocol.type.types.TypeShort;
+import me.bramhaag.mcpcserver.protocol.type.types.TypeString;
+import me.bramhaag.mcpcserver.protocol.type.types.TypeVarInt;
+import me.bramhaag.mcpcserver.protocol.type.types.TypeVarLong;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,7 @@
-package me.bramhaag.mcpcserver.protocol.types;
+package me.bramhaag.mcpcserver.protocol.type.types;
 
 import io.netty.buffer.ByteBuf;
+import me.bramhaag.mcpcserver.protocol.type.IType;
 import org.jetbrains.annotations.NotNull;
 
 public class TypeShort implements IType<Short> {
