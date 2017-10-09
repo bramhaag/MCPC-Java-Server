@@ -5,7 +5,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import me.bramhaag.mcpcserver.annotations.packets.IgnoreVariable;
 import me.bramhaag.mcpcserver.protocol.NetworkManager;
-import me.bramhaag.mcpcserver.protocol.resolver.TypeResolver;
 import me.bramhaag.mcpcserver.protocol.types.Type;
 
 import java.lang.reflect.Field;
@@ -16,7 +15,6 @@ import java.util.List;
 
 public class PacketDecoder extends ByteToMessageDecoder {
 
-    private static final TypeResolver resolver = new TypeResolver();
     private InetSocketAddress address;
 
     public PacketDecoder(InetSocketAddress address) {
@@ -53,7 +51,7 @@ public class PacketDecoder extends ByteToMessageDecoder {
 
     private void setField(Field field, Object object, ByteBuf buf) {
         try {
-            field.set(object, resolver.resolve(field.getType(), buf));
+            field.set(object, Type.DECODER.decode(field.getType(), buf));
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

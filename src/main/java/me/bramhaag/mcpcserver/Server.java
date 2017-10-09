@@ -16,16 +16,22 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Logger;
 
 public class Server {
-    private final int PORT;
 
-    private static final int PROTOCOL = 340;
+    public static final int PROTOCOL = 340;
+    public static final KeyPair KEYPAIR;
 
+    private final int port;
     private Logger logger = Logger.getLogger("Minecraft");
 
-    public Server(int port) {
-        this.PORT = port;
+    static {
+        KEYPAIR = generateKeypair();
+    }
 
+    public Server(int port) {
+        this.port = port;
         logger.info("Created");
+
+        KEYPAIR.getPublic().getEncoded();
     }
 
     public void run() throws InterruptedException {
@@ -47,7 +53,7 @@ public class Server {
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
 
-            ChannelFuture f = b.bind(PORT).sync();
+            ChannelFuture f = b.bind(port).sync();
             f.channel().closeFuture().sync();
         } finally {
             workerGroup.shutdownGracefully();
@@ -55,10 +61,16 @@ public class Server {
         }
     }
 
-    private void generateKeypair() throws NoSuchAlgorithmException {
-        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+    private static KeyPair generateKeypair() {
+        KeyPairGenerator keyPairGenerator;
+        try {
+            keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
         keyPairGenerator.initialize(1024);
 
-        KeyPair keyPair = keyPairGenerator.genKeyPair();
+        return keyPairGenerator.genKeyPair();
     }
 }
