@@ -1,4 +1,5 @@
 rootProject.name = 'mcpc-server'
 include 'annotations'
 include 'server'
+include 'core'
 

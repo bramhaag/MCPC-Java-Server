@@ -17,5 +17,6 @@ public abstract class AbstractPacket {
         return address;
     }
 
+    public abstract void decode();
     public abstract void process();
 }

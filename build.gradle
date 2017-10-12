@@ -17,9 +17,6 @@ plugins {
 group 'me.bramhaag'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.9
-targetCompatibility = sourceCompatibility
-
 repositories {
     mavenCentral()
 }
@@ -27,6 +24,9 @@ repositories {
 allprojects {
     apply plugin: 'java'
     apply plugin: "com.github.johnrengelman.shadow"
+
+    sourceCompatibility = 1.9
+    targetCompatibility = sourceCompatibility
 
     repositories {
         mavenCentral()
