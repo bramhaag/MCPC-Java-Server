@@ -1,0 +1,19 @@
+apply plugin: 'application'
+
+group 'me.bramhaag'
+version '1.0-SNAPSHOT'
+mainClassName = 'me.bramhaag.mcpcserver.server.Main'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':annotations')
+
+    compile 'io.netty:netty-all:4.1.16.Final'
+    compile 'org.reflections:reflections:0.9.11'
+}
+
+jar.manifest.attributes('Main-Class': 'me.bramhaag.mcpcserver.server.Main')
+

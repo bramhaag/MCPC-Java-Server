@@ -44,3 +44,4 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 /.idea/
+!/server/src/main/java/me/bramhaag/mcpcserver/server/protocol/packets/out/
