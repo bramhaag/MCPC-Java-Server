@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import me.bramhaag.mcpcserver.annotations.packets.IgnoreVariable;
 import me.bramhaag.mcpcserver.server.protocol.NetworkManager;
+import me.bramhaag.mcpcserver.server.protocol.packets.in.handshake.PacketHandshake;
 import me.bramhaag.mcpcserver.server.protocol.type.Type;
 
 import java.lang.reflect.Field;

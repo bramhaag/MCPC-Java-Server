@@ -6,17 +6,11 @@ import me.bramhaag.mcpcserver.server.protocol.packets.AbstractPacket;
 import java.util.Arrays;
 
 @Packet(id = 0x01, state = Packet.State.LOGIN, type = Packet.Type.OUT)
-public class PacketEncryptionRequest extends AbstractPacket {
+public abstract class PacketEncryptionRequest extends AbstractPacket {
 
-    private String serverId;
-    private byte[] publicKey;
-    private byte[] verifyToken;
-
-    public PacketEncryptionRequest(String serverId, byte[] publicKey, byte[] verifyToken) {
-        this.serverId = serverId;
-        this.publicKey = publicKey;
-        this.verifyToken = verifyToken;
-    }
+    protected String serverId;
+    protected byte[] publicKey;
+    protected byte[] verifyToken;
 
     @Override
     public void process() {

@@ -5,12 +5,12 @@ import me.bramhaag.mcpcserver.server.protocol.NetworkManager;
 import me.bramhaag.mcpcserver.server.protocol.packets.AbstractPacket;
 
 @Packet(id = 0x00, state = Packet.State.HANDSHAKING, type = Packet.Type.IN)
-public class PacketHandshake extends AbstractPacket {
+public abstract class PacketHandshake extends AbstractPacket {
 
-    private int protocol;
-    private String hostname;
-    private short port;
-    private Packet.State nextState;
+    protected int protocol;
+    protected String hostname;
+    protected short port;
+    protected Packet.State nextState;
 
     @Override
     public void process() {

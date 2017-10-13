@@ -4,9 +4,9 @@ import me.bramhaag.mcpcserver.annotations.packets.Packet;
 import me.bramhaag.mcpcserver.server.protocol.packets.AbstractPacket;
 
 @Packet(id = 0x00, state = Packet.State.LOGIN, type = Packet.Type.IN)
-public class PacketLoginStart extends AbstractPacket {
+public abstract class PacketLoginStart extends AbstractPacket {
 
-    private String name;
+    protected String name;
 
     @Override
     public void process() {
